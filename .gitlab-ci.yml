@@ -1,0 +1,5 @@
+production:
+  script:
+    - ssh sodeistvie@localhost -p 2121 "cd sodeistvie && git reset --hard && git checkout main && git pull && bun i && NODE_ENV=production bun run build && pm2 restart front"
+  only:
+  - main

@@ -1,0 +1,37 @@
+@theme {
+	--grid-areas-layout:
+		"header"
+		"main"
+		"footer"
+	;
+	--grid-in-header: header;
+	--grid-in-main: main;
+	--grid-in-footer: footer;
+}
+
+@utility grid-in-* {
+	grid-area: --value(--grid-in-*);
+}
+
+@utility grid-areas-* {
+	grid-template-areas: --value(--grid-areas-*);
+}
+
+@layer theme {
+	body {
+		@apply grid-areas-layout;
+
+		header {
+			@apply grid-in-header;
+		}
+
+		main {
+			@apply grid-in-main;
+		}
+
+		footer {
+			@apply grid-in-footer;
+		}
+	}
+}
+

@@ -1,0 +1,62 @@
+---
+import Header from '@components/Header.vue'
+import Loader from '@components/Loader.vue'
+import Footer from '@components/Footer.vue'
+import '@styles/index.css'
+
+export interface Props {
+	title: string;
+	description: string;
+	meta?: {
+		title?: string;
+		description?: string;
+		robots?: string;
+		image?: object;
+	},
+	locale?: string;
+}
+
+const {
+	title,
+	description,
+	meta,
+	locale = 'ru'
+} = Astro.props;
+
+const data = {
+	title: meta?.title || title,
+	description: meta?.description || description || meta?.title || title,
+	preview: '/logo.svg',
+	robots: meta?.robots || 'index, follow',
+}
+---
+
+<!DOCTYPE html>
+<html class="scroll-smooth" lang={locale}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{data.title}</title>
+		<meta name="description" content={data.description}>
+		<meta name="robots" content={data.robots}>
+		<meta property="og:title" content={data.title}/>
+		<meta property="og:description" content={data.description}/>
+		<meta property="og:image" content={data.preview}/>
+		<meta property="og:type" content="website"/>
+		<link rel="sitemap" href="/sitemap-index.xml">
+	</head>
+	<body class="grid min-h-screen font-body grid-cols-full grid-rows-a1a overflow-y-scroll">
+		<Header
+			client:load
+		/>
+		<main class="container">
+			<slot />
+		</main>
+		<Footer
+			client:only=""
+		/>
+		<Loader client:load/>
+	</body>
+</html>

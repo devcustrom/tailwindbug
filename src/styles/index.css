@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@plugin "tailwindcss-grid-template-short";
+@plugin "@tailwindcss/typography";
+@import "./grid-areas.css";
+
+@theme {
+	--breakpoint-2xl: initial;
+	--font-body: 'Manrope', var(--font-sans);
+	--color-inherit: inherit;
+	--spacing-4.5: 18px;
+	--spacing-5.5: 22px;
+	--spacing-13: 52px;
+	--spacing-15: 60px;
+	--animate-opacity-enter: opacity .3s ease;
+	--animate-opacity-leave: opacity .3s ease reverse;
+	--animate-height-enter: height .3s;
+	--animate-height-leave: height .3s reverse;
+
+	@keyframes opacity {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes height: {
+		0% {
+			max-height: 0;
+			opacity: 0;
+		},
+		100% {
+			max-height: 100%;
+			opacity: 1;
+		}
+	}
+}
+
+@utility container {
+	@apply mx-auto;
+}
+
+
+@layer base {
+	.lozad {
+		@apply transition-opacity opacity-0;
+	}
+
+	.lozad[data-loaded=true] {
+		@apply opacity-100;
+	}
+}
+

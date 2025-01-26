@@ -1,0 +1,30 @@
+{
+	"extends": "astro/tsconfigs/base",
+	"compilerOptions": {
+		"allowJs": true,
+		"plugins": [
+			{
+				"name": "@astrojs/ts-plugin"
+			}
+		],
+		"types": ["astro/client"],
+		"baseUrl": ".",
+		"paths": {
+			"@layouts/*": ["src/layouts/*"],
+			"@components/*": ["src/components/*"],
+			"@partials/*": ["src/partials/*"],
+			"@modules/*": ["src/modules/*"],
+			"@images/*": ["public/images/*"],
+			"@data/*": ["src/data/*"],
+			"@tools/*": ["src/tools/*"],
+			"@store/*": ["src/store/*"],
+			"@assets/*": ["src/assets/*"],
+			"@ui/*": ["src/ui/*"],
+			"@styles/*": ["src/styles/*"],
+		},
+		"typeRoots": [
+			"./node_modules/@types",
+			"./node_modules/@yandex/ymaps3-types"
+		]
+	}
+}
